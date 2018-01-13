@@ -1,5 +1,11 @@
 (cadr arg) = (car (cdr arg))
 
+(define pi 3.1415)
+
+(define radius 10)
+
+(define circumference (* 2 pi radius))
+
 (define (fib n)
 	(cond ((= n 0) 0)
 		  ((= n 1) 1)
