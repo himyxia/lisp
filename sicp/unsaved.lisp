@@ -195,3 +195,62 @@ n
   (cond ((= times 0) true)
 		((fermet-test n) (fast-prime? n (- times 1)))
 		(else false)))
+
+
+
+
+
+(define (sum-integers a b)
+  (if (> a b) 
+	0 
+	(+ a (sum-integers (+ a 1) b))))
+
+
+(define (cube a)
+  (* a a a))
+
+(define (sum-cube a b)
+  (if (> a b)
+	0
+	(+ (cube a) (sum-cube (+ a 1) b))))
+
+(define (pi-sum a b)
+  (if (> a b) 
+	0
+	(+ (/ 1 (* a (+ a 2))) (pi-sum (+ a 4) b))))
+
+(define (name a b)
+  (if (> a b)
+	0
+	(+ (term a) 
+	   (name (next a) b))))
+
+(define (sum a b term next)
+  (if (> a b)
+	0
+	(+ (term a) (sum (next a) b term next))))
+
+(define (incr n)
+  (+ n 1))
+
+(define (sum-cubes a b)
+  (sum a b cube incr))
+
+(define (identity x) x)
+
+(define (sum-integers a b)
+  (sum a b identity incr))
+
+
+(define (pi-sum a b)
+	(define (pi-next n)
+	  (+ n 4))
+	(define (pi-term n)
+	  (/ 1 (* n (+ n 2))))
+
+  (sum a b pi-term pi-next))
+
+
+(define (integral f a b dx)
+  (define (add-dx x) (+ x dx))
+  (* (sum (+ a (/ dx 2.0) b f add-dx))))
