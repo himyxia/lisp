@@ -7,12 +7,15 @@
 (define (even? x)
   (= (remainder x 2) 0))
 
+(define (odd? x)
+  (not (even? x)))
+
 (define (sum-odd-squares tree)
-  (cond ((null? tree) (list))
-		((not (pair? tree) 
+  (cond ((null? tree) 0)
+		((not (pair? tree)
 			  (if (odd? tree) tree 0)))
 		(else (+ (sum-odd-squares (car tree))
-				 (sum-odd-squares (cdr tree))))))
+				 (sum-odd-squares (cdr tree)))))
 
 (define (even-fibs n)
   (define (next k)
@@ -47,9 +50,10 @@
 		((not (pair? tree)) (list tree))
 		(else (append (car tree) (enumerate-tree (cdr tree))))))
 
-
 (define (sum-odd-squares tree)
   (accumulate + 0 (map square (filter odd? (enumerate-tree tree)))))
 
 (define (even-fibs n)
   (accumulate cons (list) (filter even? (map fib (enumerate-interval 0 n)))))
+
+

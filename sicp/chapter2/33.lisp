@@ -1,4 +1,4 @@
-\(define (map p sequence)
+(define (map p sequence)
   (accumulate (lambda (x y) (cons (p x) y)) (list) sequence))
 
 (define (append seq1 seq2)
