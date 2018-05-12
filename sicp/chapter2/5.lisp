@@ -33,4 +33,3 @@
       (count (/ origin 3) (+ result 1))
       result))
     (count z 0))
-      
