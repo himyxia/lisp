@@ -6,7 +6,6 @@
 		     balance)
 	  "Insufficient funds"))
 
-
 (define new_withdraw
   (let ((balance 100))
 	(lambda (amount)

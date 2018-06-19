@@ -474,7 +474,6 @@ exe1.20
 	(mod (- a b) b)))
 
 ex1.21 
-	
 	(define (reminder a b)
 	  (if (< a b)
 		  a
@@ -489,7 +488,6 @@ ex1.21
 	  (cond ((> (square test-divisor) n) n)
 			((= (reminder n test-divisor) 0) test-divisor)
 			(else (find-divisor n (next test-divisor)))))
-		  
 		  
 	(define (smallest-divisor n)
 	  (find-divisor n 2))

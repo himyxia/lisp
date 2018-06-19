@@ -26,7 +26,6 @@
           0
           square))
         
-        
     (check-nontrivial-sqrt1 x (remainder (square x) m)))
   
   

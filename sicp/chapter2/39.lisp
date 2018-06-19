@@ -1,4 +1,3 @@
-
 (define (fold-left op initial seq)
    (define (iter result rest)
      (if (null? rest)
