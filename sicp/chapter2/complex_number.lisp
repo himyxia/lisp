@@ -15,9 +15,7 @@
   (make-from-mag-ang (/ (magnitude z1) (magnitude z2))
                      (- (angle z1) (angle z2))))
 
-
-;; version 1
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; version 1
 ;; problem: 
 	;;altought you seems like can get different part of complex number
 	;;but underlying you can only choose one of the implementation(either `rectangle` or `polar`)
@@ -55,7 +53,7 @@
 (define (angle z) (cdr z))
 
 
-;; version2 
+;; version 2: explicit dispatch
 (define (attach-tag type-tag contents)
   (cons type-tag contents))
 
@@ -152,7 +150,7 @@
   (attach-tag 'polar (cons r a)))
 
 
-;; version 3
+;;;;;;;;;;;;;;;;; version 3: data-directed style
 (define (make-from-real-imag x y)
   ((get 'make-from-real-imag 'rectangular) x y))
 
@@ -164,12 +162,18 @@
 (define (magnitude z) (apply-generic 'magnitude z))
 (define (angle z) (apply-generic 'angle z))
 
+(define (type-tag datum)
+  (if (pair? datum)
+      (car datum)
+      (error "bad tagged datum")))
+
+;; TODO
 (define (apply-generic op . args)
   (let ((type-tags (map type-tag args)))
        (let ((proc (get op type-tags)))
             (if proc
                 (apply proc (map contents args))
-                (error "no method for these types")))))
+                (error "no method for these types" (list op type-tags))))))
 
 ;;;; hacker A
 (define (install-rectangular-package)
@@ -235,3 +239,37 @@
 ;;;; imag-part
 ;;;; magnitude
 ;;;; angle
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; version 4, message passing
+(define (apply-generic op arg) (arg op))
+
+(define (make-from-real-image x y)
+  (define (dispatch op)
+	(cond ((eq? op 'real-part) x)
+		  ((eq? op 'imag-part) y)
+		  ((eq? op 'magnitude)
+		   	(sqrt (+ (square x) (square y))))
+		  ((eq? op 'angle) (atan x))
+		  (else (error "unknow operation" op))))
+	dispatch)
+
+
+(define (make-from-mag-ang m a)
+  (define (dispatch op)
+	(cond ((eq? op 'real-part) (* r (cos a)))
+		  ((eq? op 'imag-part) (* r (sin a)))
+		  ((eq? op 'magnitude) m)
+		  ((eq? op 'angle) a)
+		  (else (error "unkonw operation" op))))
+  (dispatch))
+
+
+
+
+
+
+
+
+
+
