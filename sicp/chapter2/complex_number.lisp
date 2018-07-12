@@ -52,7 +52,6 @@
 
 (define (angle z) (cdr z))
 
-
 ;; version 2: explicit dispatch
 (define (attach-tag type-tag contents)
   (cons type-tag contents))
@@ -263,13 +262,3 @@
 		  ((eq? op 'angle) a)
 		  (else (error "unkonw operation" op))))
   (dispatch))
-
-
-
-
-
-
-
-
-
-
