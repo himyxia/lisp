@@ -13,7 +13,6 @@
 		;; add more operation
 		(else (error "fuck you"))))
 
-
 ;; version 2
 (define (deriv expr var)
   (cond ((number? expr) 0)

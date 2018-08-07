@@ -16,10 +16,20 @@
                      (- (angle z1) (angle z2))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; version 1
+;; advantadge:
+	;; add-complex, sub-complex, mul-complex, div-complex 
+	;; will work with either hacker A's representation or B's representation
+
 ;; problem: 
-	;;altought you seems like can get different part of complex number
-	;;but underlying you can only choose one of the implementation(either `rectangle` or `polar`)
-	;;name conflict
+	;; altought you seems like can get different part of complex number
+	;; but underlying you can only choose one of the implementation(either `rectangle` or `polar`)
+	;; name conflict
+
+;; `add-complex`, `sub-complex`, `mul-complex`, `div-complex`
+;;                             ↓
+;;         real-part, imag-part, magnitude, angle      
+;;                             ↓
+;;    hackerA's representation or hackerB's representation 
 
 ;;;;;; hacker A
 (define (make-from-real-image x y) (cons x y))
@@ -53,6 +63,20 @@
 (define (angle z) (cdr z))
 
 ;; version 2: explicit dispatch
+;; `add-complex`, `sub-complex`, `mul-complex`, `div-complex`
+;;                         ↓
+;;         real-part, imag-part, magnitude, angle      
+;;                         ↓
+;;                        type
+                       ;;real-part-rectangular 
+                       ;;imag-part-rectangular
+                       ;;real-part-polar 
+                       ;;imag-part-polar
+                       ;;angle-part-rectangular
+                       ;;angle-part-polar 
+                       ;;magnitude-part-polar (contents z)))
+                       ;;magnitude-part-rectangular (contents z)))
+
 (define (attach-tag type-tag contents)
   (cons type-tag contents))
 
