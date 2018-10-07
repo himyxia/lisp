@@ -1,5 +1,5 @@
 ;; cannnot figure it out
-;; output: a list of streams
+;; input: a list of streams
 ;; output: a list of streams (proc mapped)
 
 (define (stream-map proc stream)
@@ -12,7 +12,7 @@
 (define (stream-map proc . argstreams)
   (if (stream-null? (car argstreams))
 	the-empty-stream
-	(begin
-		(apply proc (map (lambda (s) (stream-car s)) argstreams))
+	(cons-stream
+		(apply proc (map stream-car argstreams))
 		(apply stream-map 
-			   (cons proc (map (lambda (s) (stream-cdr s)) argstreams))))))
+			   (cons proc (map stream-cdr argstreams))))))

@@ -3,5 +3,3 @@
 	(lambda ()
 	  (set! x (rand0-update x))
 	  x)))
-
-

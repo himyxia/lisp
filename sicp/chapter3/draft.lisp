@@ -195,44 +195,6 @@
 
 10
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 (stream-car 
             (stream-cdr 
                         (stream-filter prime? (stream-enumerate-interval 1000 1000000))))
@@ -305,10 +267,6 @@
 ;; 1009
 
               
-                        
-                          
-
-
 
 (cons 1000 (delay (stream-enumerate-interval 1001 1000000)))
 (stream-filter prime? (cons 1000 (delay (stream-enumerate-interval 1001 1000000))))
