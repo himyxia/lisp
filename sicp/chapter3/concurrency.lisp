@@ -85,10 +85,7 @@ procedure:
                       (serializer-2 (account2 'serializer)))
       ((serializer1 (serializer2 exchange)) account1 account2)))
     
-    
-
-
-serializer -> mutex
+;;serializer -> mutex
 
 (define (make-serializer)
   (let ((mutex (make-mutex)))
@@ -122,7 +119,5 @@ serializer -> mutex
       (begin (set-car! cell true)
              false)))
        
-       
-
 peter: want to exchange (a1, a2)
 paul: want to exchange (a2, a1)
